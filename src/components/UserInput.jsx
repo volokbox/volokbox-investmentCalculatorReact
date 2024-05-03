@@ -1,28 +1,40 @@
-import InputField from './InputField';
 import './UserInput.css';
-import { useState } from 'react';
 
-export default function UserInput(){
-    const[ inputContent, setInputContent ] = useState({
-        initInvest: 15000,
-        annInvest: 1000,
-        expReturn: 6,
-        duration: 12
-    }) 
-
-    function inputHandler(id, value){
-        setInputContent(id, value)
-    }
-
+export default function UserInput({ onChange, userInput}){    
     return (
         <section id="user-input">
             <div className='input-group'>
-                <InputField labelName="Intial Investment" inputType="number"/>
-                <InputField labelName="Annual Investment" inputType="numbe"/>   
+                <p>
+                    <label>Initial Investment</label>
+                    <input 
+                    type="number" 
+                    value={userInput.initialInvestment}
+                    onChange={(event) => onChange("initialInvestment", event.target.value)}/>
+                </p>
+
+                <p>
+                    <label>Annual Investment</label>
+                    <input 
+                    type="number" 
+                    value={userInput.annualInvestment}
+                    onChange={(event) => onChange("annualInvestment", event.target.value)}/>
+                </p>  
             </div>
             <div className="input-group">
-                <InputField labelName="Expected Return" inputType="number"/>
-                <InputField labelName="Duration" inputType="number"/>
+                <p>
+                    <label>Expected Return</label>
+                    <input 
+                    type="number"
+                    value={userInput.expectedReturn}
+                    onChange={(event) => onChange("expectedReturn", event.target.value)}/>
+                </p>
+                <p>
+                    <label>Duration</label>
+                    <input 
+                    type="number" 
+                    value={userInput.duration}
+                    onChange={(event) => onChange("duration", event.target.value)}/>
+                </p>
             </div>
             
         </section>
